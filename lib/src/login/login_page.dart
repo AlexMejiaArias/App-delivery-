@@ -1,17 +1,32 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:delivery_app/src/login/login_controller.dart';
 import 'package:delivery_app/src/utils/my_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  LoginController _con = new LoginController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    //Asi inicializamos los controladores
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      _con.init(context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,14 +44,16 @@ class _LoginPageState extends State<LoginPage> {
               top: 60,
               left: 25,
           ),
-          Column(
-            children: [
-              _lottieAnimation(),
-              _textFieldEmail(),
-              _textFieldPassword(),
-              _botonLogin(),
-              _textDonHaveAccount()
-            ],
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                _lottieAnimation(),
+                _textFieldEmail(),
+                _textFieldPassword(),
+                _botonLogin(),
+                _textDonHaveAccount()
+              ],
+            ),
           ),
         ],
       ),
@@ -61,6 +78,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _textLogin (){
     return Text('LOGIN',
     style: TextStyle(
+      fontFamily: 'NimbusSans',
       color: Colors.white,
       fontWeight: FontWeight.bold,
       fontSize: 22
@@ -170,10 +188,13 @@ class _LoginPageState extends State<LoginPage> {
         SizedBox(
           width: 7,
         ),
-        Text(
-          'Registrate',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, color: MyColors.primaryColor),
+        GestureDetector(
+          onTap: _con.goToRegisterPage,
+          child: Text(
+            'Registrate',
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: MyColors.primaryColor),
+          ),
         ),
       ],
     );

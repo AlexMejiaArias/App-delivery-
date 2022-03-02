@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:delivery_app/src/login/login_page.dart';
+import 'package:delivery_app/src/register/register_page.dart';
 import 'package:delivery_app/src/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({ Key? key }) : super(key: key);
+  const MyApp({ Key key }) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -22,14 +23,18 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,//Quitamos la etiqueta de debug
       title: 'Delivery App Flutter',
       theme: ThemeData(
+        //fontFamily: 'NimbusSans',
         primaryColor: MyColors.primaryColor,
         appBarTheme: AppBarTheme(
           color: MyColors.primaryColor
         )
       ),
+
       initialRoute: 'login',
       routes: {
-        'login' : (BuildContext context)=>LoginPage()
+        'login' : (BuildContext context)=>LoginPage(),
+        'register' : (BuildContext context)=>RegisterPage(),
+
       },
       
     );
