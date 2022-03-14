@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:delivery_app/src/login/login_controller.dart';
+import 'package:delivery_app/src/pages/login/login_controller.dart';
 import 'package:delivery_app/src/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -120,6 +120,9 @@ class _LoginPageState extends State<LoginPage> {
 
         ),
         child: TextField(
+          // Coloca un @ en el teclado
+          keyboardType: TextInputType.emailAddress,
+          controller: _con.emailController,
         decoration: InputDecoration(
             hintText: 'Correo Electronico',
             border: InputBorder.none,
@@ -144,6 +147,8 @@ class _LoginPageState extends State<LoginPage> {
 
       ),
       child: TextField(
+        controller: _con.passwordController,
+        obscureText: true,
         decoration: InputDecoration(
             hintText: 'Contraseña',
             border: InputBorder.none,
@@ -163,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 50,vertical: 30),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: _con.login,
         child: Text('Ingresar'),
         style: ElevatedButton.styleFrom(
           primary: MyColors.primaryColor,

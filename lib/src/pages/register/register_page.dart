@@ -1,4 +1,4 @@
-import 'package:delivery_app/src/register/register_controller.dart';
+import 'package:delivery_app/src/pages/register/register_controller.dart';
 import 'package:delivery_app/src/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -11,6 +11,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+
   RegisterController _con = new RegisterController();
 
   @override
@@ -120,6 +121,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
       ),
       child: TextField(
+        keyboardType: TextInputType.emailAddress,
+        controller: _con.emailController,
         decoration: InputDecoration(
             hintText: 'Correo Electronico',
             border: InputBorder.none,
@@ -143,6 +146,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
       ),
       child: TextField(
+        controller: _con.nameController,
         decoration: InputDecoration(
             hintText: 'Nombre',
             border: InputBorder.none,
@@ -166,6 +170,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
       ),
       child: TextField(
+        controller: _con.lastnameController,
         decoration: InputDecoration(
             hintText: 'Apellido',
             border: InputBorder.none,
@@ -189,8 +194,10 @@ class _RegisterPageState extends State<RegisterPage> {
 
       ),
       child: TextField(
+        keyboardType: TextInputType.phone,
+        controller: _con.phoneController,
         decoration: InputDecoration(
-            hintText: 'Teledono',
+            hintText: 'Telefono',
             border: InputBorder.none,
             contentPadding: EdgeInsets.all(15),
             hintStyle: TextStyle(color: MyColors.primaryOpacityDart),
@@ -212,6 +219,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
       ),
       child: TextField(
+        controller: _con.passwordController,
+        obscureText: true, // hide password
         decoration: InputDecoration(
             hintText: 'Contraseña',
             border: InputBorder.none,
@@ -235,6 +244,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
       ),
       child: TextField(
+        controller: _con.confirmPasswordController,
+        obscureText: true,
         decoration: InputDecoration(
             hintText: 'Confirmar contraseña',
             border: InputBorder.none,
@@ -257,7 +268,7 @@ class _RegisterPageState extends State<RegisterPage> {
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 50,vertical: 30),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: _con.register,
         child: Text('Registarse'),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
